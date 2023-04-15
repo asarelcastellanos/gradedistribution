@@ -4,8 +4,17 @@ import { InferGetStaticPropsType } from "next";
 
 export default function Home({
   fall_grades,
+  spring_grades,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(fall_grades);
+  
+
+  let search = fall_grades.filter(value => {
+    return value.Course.match("CS 8")
+  })
+  console.log(search);
+
+  // console.log(fall_grades);
+  // console.log(spring_grades);
 
   return (
     <div className="container">
