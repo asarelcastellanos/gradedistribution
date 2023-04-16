@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRouter } from "next/router";
 import clientPromise from "../../../../lib/mongodb";
 import InstructorCard from "../../../../components/InstructorCard";

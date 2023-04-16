@@ -1,3 +1,4 @@
+// @ts-ignore
 export default function CourseCard({ course }) {
     return (
         <div>

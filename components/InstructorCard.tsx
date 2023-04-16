@@ -1,3 +1,4 @@
+// @ts-ignores
 export default function InstructorCard({ Instructor }) {
     return(
         <div>

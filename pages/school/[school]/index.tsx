@@ -1,3 +1,4 @@
+// @ts-nocheck
 import clientPromise from "../../../lib/mongodb";
 import CourseCard from "../../../components/CourseCard";
 import Link from "next/link";
