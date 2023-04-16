@@ -1,37 +1,31 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { supportedSchools } from "../../../staticData/supportedSchools";
 import clientPromise from "../../../lib/mongodb";
+import CourseCard from "../../../components/CourseCard";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface School {
   name: String;
   database: String;
 }
 
-interface Course {
-    count: Number,
-    gradeA: String,
-    gradeB: String,
-    gradeC: String,
-    courseName: String,
-    gradeD: String,
-    gradeEW: String,
-    gradeF: String,
-    gradeIX: String,
-    instructorName: String,
-    gradeNP: String,
-    gradeP: String,
-    gradeSP: String,
-    sectionNumber: Number,
-    totalCount: Number,
-    gradeW: String,
-    _id: String,
-}
-
 export default function School({ fall_courses, spring_courses }) {
-  console.log(fall_courses);
+
+    const router = useRouter()
+    const { school } = router.query;
+    console.log(school);
+
   return (
     <div>
-      <p>School Page</p>
+      <p>School Page for {school}.</p>
+      {fall_courses.map((course) => {
+        return (
+          <Link key={course._id} href={`/school/${school}/course/${course._id}`}>
+            <CourseCard course={course.Course} instructor={course.Instructor} section={course.Section} />
+          </Link>
+        );
+      })}
     </div>
   );
 }
