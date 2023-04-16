@@ -11,18 +11,24 @@ interface School {
 }
 
 export default function School({ fall_courses, spring_courses }) {
-
-    const router = useRouter()
-    const { school } = router.query;
-    console.log(school);
+  const router = useRouter();
+  const { school } = router.query;
+  console.log(school);
 
   return (
     <div>
       <p>School Page for {school}.</p>
       {fall_courses.map((course) => {
         return (
-          <Link key={course._id} href={`/school/${school}/course/${course._id}`}>
-            <CourseCard course={course.Course} instructor={course.Instructor} section={course.Section} />
+          <Link
+            key={course._id}
+            href={`/school/${school}/course/${course._id}`}
+          >
+            <CourseCard
+              course={course.Course}
+              instructor={course.Instructor}
+              section={course.Section}
+            />
           </Link>
         );
       })}
