@@ -1,34 +1,26 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { supportedSchools } from "../../../staticData/supportedSchools";
 import clientPromise from "../../../lib/mongodb";
 import CourseCard from "../../../components/CourseCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { supportedSchools } from "../../../staticData/supportedSchools";
 
-interface School {
-  name: String;
-  database: String;
-}
-
-export default function School({ fall_courses, spring_courses }) {
+export default function School(props: { courses: String[] }) {
   const router = useRouter();
   const { school } = router.query;
-  console.log(school);
+  let schoolPage = supportedSchools.find(
+    (specificSchool) => specificSchool.database === school
+  );
 
   return (
     <div>
-      <p>School Page for {school}.</p>
-      {fall_courses.map((course) => {
+      <p>School Page for {schoolPage?.name}.</p>
+      {props.courses.map((course) => {
         return (
           <Link
-            key={course._id}
-            href={`/school/${school}/course/${course._id}`}
+            key={course.toString()}
+            href={`/school/${school}/course/${course}`}
           >
-            <CourseCard
-              course={course.Course}
-              instructor={course.Instructor}
-              section={course.Section}
-            />
+            <CourseCard course={course} />
           </Link>
         );
       })}
@@ -36,31 +28,19 @@ export default function School({ fall_courses, spring_courses }) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
-  const paths = supportedSchools.map((school) => ({
-    params: { school: school.database },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export async function getServerSideProps({ params }) {
   try {
     const client = await clientPromise;
     const db = client.db(params.school);
 
-    const fall_courses = await db.collection("fall").find({}).toArray();
-    const spring_courses = await db.collection("spring").find({}).toArray();
+    const courses = await db.collection("fall").distinct("Course");
 
     return {
       props: {
-        fall_courses: JSON.parse(JSON.stringify(fall_courses)),
-        spring_courses: JSON.parse(JSON.stringify(spring_courses)),
+        courses: JSON.parse(JSON.stringify(courses)),
       },
     };
   } catch (e) {
     console.error(e);
   }
-};
+}
