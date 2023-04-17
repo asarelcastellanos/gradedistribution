@@ -2,10 +2,11 @@ import { SetStateAction, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  const [course, setCourse] = useState("CS 8");
+  const [course, setCourse] = useState("");
 
-  function handleChange(event: { target: { value: SetStateAction<string>; }; }) {
-    setCourse(event.target.value);
+  function handleChange(event: any) {
+    let unformattedCourse = event.target.value;
+    setCourse(unformattedCourse.toUpperCase());
   }
 
   return (
