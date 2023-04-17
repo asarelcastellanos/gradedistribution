@@ -34,6 +34,15 @@ export default function CoursePage({ courses }) {
             <p>Instructor: {individual_course.Instructor}</p>
             <p>Section: {individual_course.Section}</p>
             <Bar
+              options={{
+                responsive: false,
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "Total Students = ",
+                  },
+                },
+              }}
               data={{
                 labels: ["A", "B", "C", "D", "F", "W", "P", "NP"],
                 datasets: [
