@@ -1,24 +1,27 @@
-import { supportedSchools } from "../staticData/supportedSchools";
-import SchoolCard from "../components/SchoolCard";
+import { SetStateAction, useState } from "react";
 import Link from "next/link";
 
-interface School {
-  name: String;
-  database: String;
-}
-
 export default function Home() {
+  const [course, setCourse] = useState("");
+
+  function handleChange(event: any) {
+    let unformattedCourse = event.target.value;
+    setCourse(unformattedCourse.toUpperCase());
+  }
+
   return (
     <div className="container">
-      <h1>Welcome!</h1>
-      <h4>Click on a school to view grade distributions.</h4>
-      {supportedSchools?.map((school: School) => {
-        return (
-          <Link href={`/school/${school.database}`}>
-            <SchoolCard name={school.name} />
-          </Link>
-        );
-      })}
+      <h1>How Hard Is This Class?</h1>
+      <h4>
+        Welcome to the website that helps you decide which class at Santa Monica
+        College to take based on grade distributions.
+      </h4>
+      <div>
+        <input placeholder="Example: CS 8" onChange={handleChange}/>
+        <Link href={`/course/${course}`}>
+          <button>Go to Course</button>
+        </Link>
+      </div>
     </div>
   );
 }
