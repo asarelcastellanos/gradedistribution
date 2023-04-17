@@ -39,24 +39,30 @@ export default function CoursePage({ courses }) {
                 plugins: {
                   title: {
                     display: true,
-                    text: "Total Students = ",
+                    text: `Total Students = ${individual_course.Grand_Total} `,
                   },
+                  legend: {
+                    display: true
+                  }
                 },
               }}
               data={{
-                labels: ["A", "B", "C", "D", "F", "W", "P", "NP"],
+                labels: ["A", "B", "C", "D", "F", "P", "NP", "IX", "RD", "EW", "W"],
                 datasets: [
                   {
-                    label: "Grades",
+                    label: "Students",
                     data: [
                       individual_course.A,
                       individual_course.B,
                       individual_course.C,
                       individual_course.D,
                       individual_course.F,
-                      individual_course.W,
                       individual_course.P,
                       individual_course.NP,
+                      individual_course.IX,
+                      individual_course.RD,
+                      individual_course.EW,
+                      individual_course.W
                     ],
                     backgroundColor: "lightblue",
                   },
