@@ -10,7 +10,7 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
+    <>
       <h1>How Hard Is This Class?</h1>
       <h4>
         Welcome to the website that helps you decide which class at Santa Monica
@@ -22,6 +22,6 @@ export default function Home() {
           <button>Go to Course</button>
         </Link>
       </div>
-    </div>
+    </>
   );
 }
