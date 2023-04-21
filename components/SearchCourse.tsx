@@ -1,7 +1,22 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 export default function SearchCourse() {
+  const [course, setCourse] = useState();
+
+  const router = useRouter();
+
+  function handleChange(event: any) {
+    setCourse(event.target.value.toUpperCase());
+  }
+
+  function goCourse() {
+    router.push(`/course/${course}`);
+  }
+
   return (
-    <div className="bg-green-500 flex flex-col flex-grow justify-center items-center">
-      <div className="bg-orange-500 flex w-1/3 h-16 absolute top-8">
+    <div className="flex flex-col flex-grow justify-center items-center text-white">
+      <div className="flex w-1/3 h-16 absolute top-8">
         <h1 className="m-auto text-2xl font-semibold">Santa Monica College</h1>
       </div>
       {/* <div className="bg-pink-500 w-screen"> */}
@@ -9,8 +24,14 @@ export default function SearchCourse() {
       <input
         className="w-1/4 h-12 rounded-full p-4 mb-8 text-black"
         placeholder="Example: PHYSCS 8"
+        onChange={handleChange}
       />
-      <button className="border-2 border-white hover:bg-gray-400 w-32 h-8 rounded-full">Find Class</button>
+      <button
+        onClick={goCourse}
+        className="border-2 border-white hover:bg-gray-500 w-32 h-8 rounded-full"
+      >
+        Find Class
+      </button>
       {/* </div> */}
     </div>
   );
