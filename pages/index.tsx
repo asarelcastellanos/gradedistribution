@@ -1,11 +1,11 @@
 import HomeHeader from "../components/HomeHeader";
-import SearchCourse from "../components/SearchCourse";
+import HomeSearch from "../components/HomeSearch";
 
 export default function Home() {
   return (
-      <div className="flex flex-col bg-black h-screen">
+      <div className="flex flex-col h-screen">
         <HomeHeader />
-        <SearchCourse />
+        <HomeSearch />
       </div>
   );
 }

@@ -26,7 +26,14 @@ export default function CourseCard({ course }) {
         <p>Section: {course.Section}</p>
         <p>Discipline: {course.Discipline}</p>
         <p>Department: {course.Dept}</p>
-        <p>Pass Rate: {(( (course.A + course.B + course.C) / course.Grand_Total) * 100).toFixed(2)}%</p>
+        <p>
+          Pass Rate:{" "}
+          {(
+            ((course.A + course.B + course.C) / course.Grand_Total) *
+            100
+          ).toFixed(2)}
+          %
+        </p>
       </div>
       <div className="h-full lg:w-3/4 w-full">
         <p>Total Grades Given</p>
