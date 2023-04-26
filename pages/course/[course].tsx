@@ -9,17 +9,35 @@ export default function CoursePage({ courses }) {
 
   console.log(courses);
 
-  return (
-    <div className="flex flex-col container m-auto h-screen">
-      <div className="h-32 p-8">
-        <p className="text-gray-800">Course Searched:</p>
-        <h1 className="font-bold">{course}</h1>
-      </div>
+  function CoursePage({ courses }) {
+    return (
       <div className="flex flex-col flex-grow">
         {courses.map((single_course) => {
           return <CourseCard key={single_course._id} course={single_course} />;
         })}
       </div>
+    );
+  }
+
+  function CourseNotFound() {
+    return (
+      <div className="flex flex-col flex-grow mt-10 p-8">
+        <h1 className="text-2xl">Course Data Not Avaiable</h1>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col m-auto h-screen">
+      <div className="h-32 p-8">
+        <p className="text-gray-800">Course Searched:</p>
+        <h1 className="font-bold">{course}</h1>
+      </div>
+      {courses.length != 0 ? (
+        <CoursePage courses={courses} />
+      ) : (
+        <CourseNotFound />
+      )}
     </div>
   );
 }

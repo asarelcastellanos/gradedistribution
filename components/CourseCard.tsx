@@ -19,25 +19,21 @@ ChartJS.register(
 );
 
 export default function CourseCard({ course }) {
+
+  let passRate = (((course.A + course.B + course.C) / course.Grand_Total)*100).toFixed(2);
+
   return (
-    <div className="flex flex-col lg:flex-row m-auto lg:h-96 h-full w-full mb-10">
-      <div className="h-full lg:w-1/4 w-full text-center">
-        <p>Professor: {course.Instructor}</p>
-        <p>Section: {course.Section}</p>
-        <p>Discipline: {course.Discipline}</p>
-        <p>Department: {course.Dept}</p>
-        <p>
-          Pass Rate:{" "}
-          {(
-            ((course.A + course.B + course.C) / course.Grand_Total) *
-            100
-          ).toFixed(2)}
-          %
+    <div className="flex flex-col md:flex-row flex-grow mb-10">
+      <div className="md:w-1/4 w-full h-full p-4">
+        <p className="">{course.Instructor}</p>
+        <p className="">Section: {course.Section}</p>
+        <p className="">
+          Pass Rate: {passRate}%
         </p>
       </div>
-      <div className="lg:w-3/4 w-full h-full p-4">
-        <p>Total Grades Given</p>
-        <span>{course.Grand_Total}</span>
+      <div className="md:w-3/4 w-full h-full p-4">
+        <p className="font-bold">Total Students</p>
+        <span className="font-normal">{course.Grand_Total}</span>
         <div className="h-52 md:h-80">
           <Bar
             options={{
@@ -56,12 +52,12 @@ export default function CourseCard({ course }) {
                 "C",
                 "D",
                 "F",
-                // "P",
-                // "NP",
-                // "IX",
-                // "RD",
-                // "EW",
-                // "W",
+                "P",
+                "NP",
+                "IX",
+                "RD",
+                "EW",
+                "W",
               ],
               datasets: [
                 {
@@ -72,32 +68,32 @@ export default function CourseCard({ course }) {
                     course.C,
                     course.D,
                     course.F,
-                    // 0,
-                    // 0,
-                    // 0,
-                    // 0,
-                    // 0,
-                    // 0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
                   ],
                   backgroundColor: "blue",
                 },
-                // {
-                //   label: "Other",
-                //   data: [
-                //     0,
-                //     0,
-                //     0,
-                //     0,
-                //     0,
-                //     course.P,
-                //     course.NP,
-                //     course.IX,
-                //     course.RD,
-                //     course.EW,
-                //     course.W,
-                //   ],
-                //   backgroundColor: "lightblue",
-                // },
+                {
+                  label: "Other",
+                  data: [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    course.P,
+                    course.NP,
+                    course.IX,
+                    course.RD,
+                    course.EW,
+                    course.W,
+                  ],
+                  backgroundColor: "lightblue",
+                },
               ],
             }}
           />
