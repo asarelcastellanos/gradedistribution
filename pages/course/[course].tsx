@@ -11,7 +11,7 @@ export default function CoursePage({ courses }) {
 
   function CoursePage({ courses }) {
     return (
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-col flex-grow p-2 md:p-8">
         {courses.map((single_course) => {
           return <CourseCard key={single_course._id} course={single_course} />;
         })}
