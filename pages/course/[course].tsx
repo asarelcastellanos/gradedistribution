@@ -7,6 +7,8 @@ export default function CoursePage({ courses }) {
   const router = useRouter();
   const { course } = router.query;
 
+  console.log(courses);
+
   return (
     <div className="flex flex-col container m-auto h-screen">
       <div className="h-32 p-8">
@@ -28,7 +30,7 @@ export async function getServerSideProps({ params }) {
     const db = client.db("santa-monica-college");
 
     const courses = await db
-      .collection("fall")
+      .collection("fall-2022")
       .find({ Course: params.course })
       .toArray();
 

@@ -8,7 +8,7 @@ export default function HomeHeader() {
       </div> */}
       <div className="flex flex-col h-full w-screen justify-center items-center">
         <h1 className="md:text-2xl sm:text-xl text-lg font-semibold">Santa Monica College</h1>
-        <p className="text-base">Last Updated: Spring 2022</p>
+        <p className="text-base">Last Updated: Fall 2022</p>
       </div>
     </div>
   );
