@@ -75,7 +75,7 @@ export default function CourseCard({ course }) {
                     0,
                     0,
                   ],
-                  backgroundColor: "blue",
+                  backgroundColor: "#0374E1",
                 },
                 {
                   label: "Other",
