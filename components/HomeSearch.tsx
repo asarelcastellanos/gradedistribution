@@ -76,17 +76,17 @@ export default function HomeSearch() {
       </h1>
       {/* Search Course */}
       {showCourseSearch ? (
-        <div className="flex flex-col md:flex-row justify-center items-center mb-10">
+        <div className="flex flex-row justify-center items-center mb-10">
           <input
-            className="w-full md:w-1/2 border-2 border-gray-200 rounded-full h-10 p-2"
-            placeholder="Example: PHYSCS 8"
+            className="text-lg w-full md:w-1/2 border-2 border-gray-500 rounded-l-full h-10 px-6"
+            placeholder="📚 Example: PHYSCS 8"
             onChange={handleChange}
           />
           <button
             onClick={goCoursePage}
-            className="md:ml-2 mt-2 md:mt-0 rounded-full w-28 h-10 border-2 border-gray-500 hover:bg-gray-200"
+            className="text-xl rounded-r-full w-12 h-10 border-y-2 border-r-2 border-gray-500 hover:bg-gray-200"
           >
-            Continue
+            🔎
           </button>
         </div>
       ) : (
