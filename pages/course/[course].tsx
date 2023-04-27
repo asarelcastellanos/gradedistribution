@@ -7,8 +7,6 @@ export default function CoursePage({ courses }) {
   const router = useRouter();
   const { course } = router.query;
 
-  console.log(courses);
-
   function CoursePage({ courses }) {
     return (
       <div className="flex flex-col flex-grow p-2 md:p-8">

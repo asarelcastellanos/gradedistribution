@@ -1,9 +1,29 @@
 import "../global.css";
 import Head from "next/head";
 
+import Router from "next/router";
+import { useState, useEffect } from "react";
+import Loader from "../components/Loader";
+
 import type { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    Router.events.on("routeChangeStart", (url) => {
+      setIsLoading(true);
+    });
+
+    Router.events.on("routeChangeComplete", (url) => {
+      setIsLoading(false);
+    });
+
+    Router.events.on("routeChangeError", (url) => {
+      setIsLoading(false);
+    });
+  }, [Router]);
+
   return (
     <>
       <Head>
@@ -23,10 +43,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           property="og:description"
           content="View grade distributions of courses sorted by professors and their attributed sections based on the most up to date data."
         />
-        <meta
-          property="og:image"
-          content="/assets/howhardisthisclass.png"
-        />
+        <meta property="og:image" content="/assets/howhardisthisclass.png" />
 
         {/* <!-- Twitter --> */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -41,6 +58,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="/assets/howhardisthisclass.png"
         />
       </Head>
+      {isLoading && <Loader />}
       <Component {...pageProps} />
     </>
   );
